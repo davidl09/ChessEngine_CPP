@@ -1,0 +1,99 @@
+/* Base board layout:
+    0-63 corresponds to A1-H8
+    
+    Notes:
+        - Vertical flip performed with XOR 56:  sq' = sq ^ 56
+        - Horizontal flip performed with XOR 7: sq' = sq ^ 7
+        
+*/
+
+#include <iostream>
+#include <cstdint>
+#include <cmath>
+
+namespace Chess{
+    enum Pieces{
+        WPAWN = 0,
+        BPAWN,
+        WKNIGHT,
+        BKNIGHT,
+        WBISHOP,
+        BBISHOP,
+        WROOK,
+        BROOk,
+        WQUEEN,
+        BQUEEN,
+        WKING,
+        BKING,
+    };
+    
+    class BitBoard{
+        public:
+            BitBoard(){
+                board = 0;
+            }
+            
+            BitBoard(uint64_t value){
+                board = value;
+            }
+            
+            uint64_t get_board(){
+                return board;
+            }
+            
+            bool value_at(int index){
+                if(index > 63 || index < 0){
+                    throw std::invalid_argument("Out of bounds access on BitBoard\n");
+                }
+                return ((board >> index) % 2);
+            }
+            
+            void set_bit(int index){
+                board |= (1ULL << index);
+            }
+            
+            int LS1B(){
+                int pos = 0;
+                while((board >> pos) % 2 == 0){
+                    ++pos;
+                }
+                return pos;
+            }
+            
+            int MS1B(){
+                int pos = 0;
+                while(pos < 64 && (board << pos) < 0x8000000000000000){
+                    ++pos;
+                }
+                return 63 - pos;
+            }
+        private:
+            uint64_t board;
+    };
+    
+    class Board{
+        public:
+            Board(){
+                
+            }
+            
+            void print_board(){
+                
+            }
+            
+            bool white_in_check(){
+                
+            }
+            
+            bool black_in_check(){
+                
+            }
+        private:
+            BitBoard piece_boards[12];
+    };
+}
+
+int main(){
+    Chess::BitBoard b(15);
+    std::cout << b.MS1B() << std::endl;
+}
