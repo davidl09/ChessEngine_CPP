@@ -1,4 +1,5 @@
 project(chess)
 cmake_minimum_required(VERSION 3.22)
 set(CXX_STANDARD 23)
+add_compile_options(-fpermissive)
 add_subdirectory(main)

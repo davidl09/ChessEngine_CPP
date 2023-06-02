@@ -17,58 +17,59 @@ namespace Chess{
         WKING,
         BKING,
     };
-    
+
     class BitBoard{
         public:
-            BitBoard();
-            BitBoard(uint64_t);
-            uint64_t get_board();
+            virtual uint64_t get_board();
             bool value_at(int index);
             void set_bit(int index);
             void clear_bit(int index);
             int LS1B();
             int MS1B();
 
-            virtual BitBoard pseudolegal_moves();
-        private:
+            uint64_t virtual pseudolegal_moves(uint64_t opposing_pieces) = 0;
+        protected:
+            BitBoard();
             uint64_t board;
     };
 
     class WhitePawnBoard : public BitBoard{
         public:
-            BitBoard pseudolegal_moves() override;
+            WhitePawnBoard();
+            uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
-
+/*
     class BlackPawnBoard : public BitBoard{
         public:
-            BitBoard pseudolegal_moves() override;
+            BlackPawnBoard();
+            uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
 
     class KnightBoard : public BitBoard{
         public:
-            BitBoard pseudolegal_moves() override;
+            uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
 
     class BishopBoard : public BitBoard{
         public:
-            BitBoard pseudolegal_moves() override;
+            uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
 
     class RookBoard : public BitBoard{
         public:
-            BitBoard pseudolegal_moves() override;
+            uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
 
     class QueenBoard : public BitBoard{
         public:
-            BitBoard pseudolegal_moves() override;
+            uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
 
     class KingBoard : public BitBoard{
         public:
-            BitBoard pseudolegal_moves() override;
+            uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
-
+*/
     class Board{
         public:
             Board();
@@ -76,8 +77,14 @@ namespace Chess{
             bool white_in_check();
             bool black_in_check();
         private:
-            BitBoard piece_boards[12];
+            BitBoard* piece_boards[12];
+            uint64_t black_pieces();
+            uint64_t white_pieces();
     };
 
+    class Move{
+        public:
+        private:
 
+    };
 }
