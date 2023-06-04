@@ -8,12 +8,39 @@ BitBoard::BitBoard(){
 
 WhitePawnBoard::WhitePawnBoard()
 : BitBoard(){
-    //this->board &= ((uint64_t)(0x00000000000000ff) << 8);
-    this->board = 255;
-    this->board <<= 8;
+    this->board |= ((uint64_t)0xff << 8);
 }
 
-uint64_t WhitePawnBoard::pseudolegal_moves(uint64_t){
+BlackPawnBoard::BlackPawnBoard() 
+: BitBoard(){
+    this->board |= ((uint64_t)0xff << 6 * 8);
+}
+
+WhiteKnightBoard::WhiteKnightBoard()
+: BitBoard(){
+    this->set_bit(1);
+    this->set_bit(6);
+}
+
+BlackKnightBoard::BlackKnightBoard()
+: BitBoard(){
+    this->set_bit(62);
+    this->set_bit(57);
+}
+
+uint64_t WhitePawnBoard::pseudolegal_moves(uint64_t pieces){ //to be continued
+    return 0;
+}
+
+uint64_t BlackPawnBoard::pseudolegal_moves(uint64_t pieces){
+    return 0;
+}
+
+uint64_t WhiteKnightBoard::pseudolegal_moves(uint64_t pieces){
+    return 0;
+}
+
+uint64_t BlackKnightBoard::pseudolegal_moves(uint64_t pieces){
     return 0;
 }
 

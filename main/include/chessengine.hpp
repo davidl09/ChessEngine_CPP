@@ -38,18 +38,25 @@ namespace Chess{
             WhitePawnBoard();
             uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
-/*
+
     class BlackPawnBoard : public BitBoard{
         public:
             BlackPawnBoard();
             uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
 
-    class KnightBoard : public BitBoard{
+    class WhiteKnightBoard : public BitBoard{
         public:
+            WhiteKnightBoard();
             uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
 
+    class BlackKnightBoard : public BitBoard{
+        public:
+            BlackKnightBoard();
+            uint64_t pseudolegal_moves(uint64_t opposing_pieces);
+    };
+/*
     class BishopBoard : public BitBoard{
         public:
             uint64_t pseudolegal_moves(uint64_t opposing_pieces);
