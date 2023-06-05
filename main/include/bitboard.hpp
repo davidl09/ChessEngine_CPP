@@ -76,23 +76,6 @@ namespace Chess{
             uint64_t pseudolegal_moves(uint64_t opposing_pieces);
     };
 */
-    class Board{
-        public:
-            Board();
-            void print_board();
-            bool white_in_check();
-            bool black_in_check();
-        private:
-            BitBoard* piece_boards[12];
-            uint64_t black_pieces();
-            uint64_t white_pieces();
-    };
-
-    class Move{
-        public:
-        private:
-
-    };
 }
 
 
