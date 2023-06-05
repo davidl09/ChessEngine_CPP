@@ -1,4 +1,4 @@
-#include "chessengine.hpp"
+#include "bitboard.hpp"
 
 using namespace Chess;
 
@@ -8,16 +8,23 @@ BitBoard::BitBoard(){
 
 WhitePawnBoard::WhitePawnBoard()
 : BitBoard(){
-    //this->board &= ((uint64_t)(0x00000000000000ff) << 8);
-    this->board = 255;
-    this->board <<= 8;
+    this->board |= ((uint64_t)(0x00000000000000ff) << 8);
 }
 
-uint64_t WhitePawnBoard::pseudolegal_moves(uint64_t){
-    return 0;
+uint64_t WhitePawnBoard::pseudolegal_moves(uint64_t opposing_pieces){
+    uint64_t empty = (this->board << 8) & ~opposing_pieces;
+    uint64_t attack = ((this->board << 7) | (this->board << 9)) & opposing_pieces;
+    return empty | attack;
 }
 
 bool BitBoard::value_at(int index){
+    if(index > 63 || index < 0){
+        throw std::invalid_argument("Out of bounds access on BitBoard\n");
+    }
+    return ((board >> index) % 2);
+}
+
+bool value_at(uint64_t board, int index){
     if(index > 63 || index < 0){
         throw std::invalid_argument("Out of bounds access on BitBoard\n");
     }

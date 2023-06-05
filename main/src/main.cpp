@@ -1,4 +1,4 @@
-#include "chessengine.hpp"
+#include "bitboard.hpp"
 
 using namespace Chess;
 
@@ -9,7 +9,7 @@ int main(void){
     {
         for (int j = 0; j < 8; j++)
         {
-            std::cout << b.value_at((7-i)*8 + j) << " ";
+            std::cout << value_at(b.get_board(), (7-i)*8 + j) << " ";
         }
         std::cout << std::endl;
     }

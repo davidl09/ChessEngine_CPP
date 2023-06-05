@@ -1,6 +1,9 @@
+#ifndef CHESSENGINE_HPP
+#define CHESSENGINE_HPP
+
 #include <iostream>
 #include <cstdint>
-#include <cmath>
+#include <bit>
 
 namespace Chess{
     enum Pieces{
@@ -17,6 +20,9 @@ namespace Chess{
         WKING,
         BKING,
     };
+
+    bool value_at(uint64_t board, int index);
+
 
     class BitBoard{
         public:
@@ -88,3 +94,6 @@ namespace Chess{
 
     };
 }
+
+
+#endif
