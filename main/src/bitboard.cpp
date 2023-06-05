@@ -13,7 +13,8 @@ namespace Chess{
     uint64_t WhitePawnBoard::pseudolegal_moves(uint64_t opposing_pieces){
         uint64_t empty = (this->board << 8) & ~opposing_pieces;
         uint64_t attack = ((this->board << 7) | (this->board << 9)) & opposing_pieces;
-        return empty | attack;
+        uint64_t start = (((uint64_t)0xff << 8) & this->board) << 16;
+        return empty | attack | start;
     }
 
     bool BitBoard::value_at(int index){
