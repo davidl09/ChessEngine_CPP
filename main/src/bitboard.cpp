@@ -1,20 +1,20 @@
 #include "bitboard.hpp"
 
 namespace Chess{
+
+    const std::map<int, uint64_t> rank = {
+        {0, (uint64_t)0xff},
+        {1, (uint64_t)0xff << 8},
+        {2, (uint64_t)0xff << 16},
+        {3, (uint64_t)0xff << 24},
+        {4, (uint64_t)0xff << 32},
+        {5, (uint64_t)0xff << 40},
+        {6, (uint64_t)0xff << 48},
+        {7, (uint64_t)0xff << 56}
+    };
+
     BitBoard::BitBoard(){
         this->board = 0ULL;
-    }
-
-    WhitePawnBoard::WhitePawnBoard()
-    : BitBoard(){
-        this->board |= ((uint64_t)(0x00000000000000ff) << 8);
-    }
-
-    uint64_t WhitePawnBoard::pseudolegal_moves(uint64_t opposing_pieces){
-        uint64_t empty = (this->board << 8) & ~opposing_pieces;
-        uint64_t attack = ((this->board << 7) | (this->board << 9)) & opposing_pieces;
-        uint64_t start = (((uint64_t)0xff << 8) & this->board) << 16;
-        return empty | attack | start;
     }
 
     bool BitBoard::value_at(int index){
@@ -72,7 +72,7 @@ namespace Chess{
     BlackPawnBoard::BlackPawnBoard(){
         this->board = 0x0;
         this->board &= ((0xff) << 56);
-    }*/
+    }
 
     void Board::print_board(){
         for (int i = 0; i < 8; i++)
@@ -84,5 +84,5 @@ namespace Chess{
             std::cout << std::endl;
         }
     }
-
+*/
 }

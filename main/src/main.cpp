@@ -1,9 +1,10 @@
 #include "bitboard.hpp"
+#include "pieces.hpp"
 
 using namespace Chess;
 
 int main(void){   
-    WhitePawnBoard b; 
+    BlackPawnBoard b; 
     std::cout << b.get_board() << std::endl;
 
 
@@ -24,5 +25,7 @@ int main(void){
         }
         std::cout << std::endl;
     }
+
+    std::cout << "\n\n";
     
 }
