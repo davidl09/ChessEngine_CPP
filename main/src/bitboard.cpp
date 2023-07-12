@@ -2,16 +2,7 @@
 
 namespace Chess{
 
-    const std::map<int, uint64_t> rank = {
-        {0, (uint64_t)0xff},
-        {1, (uint64_t)0xff << 8},
-        {2, (uint64_t)0xff << 16},
-        {3, (uint64_t)0xff << 24},
-        {4, (uint64_t)0xff << 32},
-        {5, (uint64_t)0xff << 40},
-        {6, (uint64_t)0xff << 48},
-        {7, (uint64_t)0xff << 56}
-    };
+    typedef uint64_t u64;
 
     BitBoard::BitBoard(){
         this->board = 0ULL;
@@ -65,24 +56,18 @@ namespace Chess{
         return this->board;
     }
 
-    //Constructors
-
-
-    /*
-    BlackPawnBoard::BlackPawnBoard(){
-        this->board = 0x0;
-        this->board &= ((0xff) << 56);
+    //masks
+    static constexpr uint64_t rank_mask(const int rank){
+        assert(rank >= 0 && rank < 8);
+        return (uint64_t)255 << rank;
     }
 
-    void Board::print_board(){
-        for (int i = 0; i < 8; i++)
-        {
-            for (int j = 0; j < 8; j++)
-            {
-                std::cout << this->piece_boards[0]->get_board() << " ";
-            }
-            std::cout << std::endl;
-        }
+    static constexpr uint64_t file_mask(const int file){
+        assert(file >= 0 && file < 8);
+        return (uint64_t)101010101010101 << file;
     }
-*/
+
+    static constexpr uint64_t right_diag_mask(const int rank_file){
+        
+    }
 }

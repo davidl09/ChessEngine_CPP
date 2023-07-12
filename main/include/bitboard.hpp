@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <bit>
 #include <map>
+#include <cassert>
 
 namespace Chess{
     
@@ -19,6 +20,10 @@ namespace Chess{
             void clear_bit(int index);
             int LS1B();
             int MS1B();
+
+            //masks
+            static constexpr uint64_t rank_mask(int rank);
+            static constexpr uint64_t file_mask(int file);
 
             uint64_t virtual pseudolegal_moves(uint64_t opposing_pieces) = 0;
         protected:
