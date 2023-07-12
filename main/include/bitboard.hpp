@@ -9,6 +9,21 @@
 
 namespace Chess{
 
+    enum Pieces{
+        WPAWN = 0,
+        BPAWN,
+        WKNIGHT,
+        BKNIGHT,
+        WBISHOP,
+        BBISHOP,
+        WROOK,
+        BROOk,
+        WQUEEN,
+        BQUEEN,
+        WKING,
+        BKING,
+    };
+
     class BitBoard{
         public:
         
@@ -55,11 +70,12 @@ namespace Chess{
                 return (uint64_t)101010101010101 << file;
             }
 
-            uint64_t virtual pseudolegal_moves(uint64_t opposing_pieces) = 0;
+            uint64_t virtual pseudolegal_moves(uint64_t opposing_pieces, uint64_t friend_pieces) = 0;
             
             
         protected:
             constexpr BitBoard() : board(1ULL){}
+            constexpr BitBoard(uint64_t pieces) : board(pieces) {}
             
             uint64_t board;
     };
