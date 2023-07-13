@@ -81,7 +81,7 @@ namespace Chess{
     };
     
     bool value_at(uint64_t board, int index){
-        assert(index > 63 || index < 0);
+        assert(index < 64 && index >= 0);
         return ((board >> index) & 1ULL);
     }
     
